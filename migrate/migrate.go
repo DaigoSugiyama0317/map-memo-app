@@ -13,3 +13,5 @@ func main() {
 	defer db.CloseDB(dbConn)
 	dbConn.AutoMigrate(&model.User{}, &model.Location{}, &model.Tag{})
 }
+
+//これで実行 go run .\migrate\migrate.go -GO_ENV=dev

@@ -17,7 +17,6 @@ type Location struct {
 	Latitude  float64 `gorm:"not null" json:"latitude"`
 	Longitude float64 `gorm:"not null" json:"longitude"`
 	Memo      string  `gorm:"type:text" json:"memo"`
-	ImagePath string  `gorm:"size:512" json:"image_path"`
 
 	Tags []Tag `gorm:"many2many:location_tags;constraint:OnDelete:CASCADE;" json:"tags,omitempty"`
 }
