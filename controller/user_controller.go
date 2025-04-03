@@ -13,3 +13,7 @@ type IUserController interface {
 type userController struct {
 	uu usecase.IUserUsecase
 }
+
+func (uc *userController) SignUp(c echo.Context) error {
+	return nil
+}
