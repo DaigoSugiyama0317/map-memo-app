@@ -19,3 +19,9 @@ type User struct {
 	Locations []Location `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE;" json:"locations,omitempty"`
 	Tags      []Tag      `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE;" json:"tags,omitempty"`
 }
+
+type UserResponse struct {
+	ID       uint   `json:"id"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+}
