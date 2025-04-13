@@ -19,3 +19,9 @@ type Tag struct {
 
 	Locations []Location `gorm:"many2many:location_tags;constraint:OnDelete:CASCADE;" json:"locations,omitempty"`
 }
+
+type TagResponse struct {
+	ID    uint   `json:id`
+	Name  string `json:name`
+	Color string `json:color`
+}
