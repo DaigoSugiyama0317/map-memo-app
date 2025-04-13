@@ -3,6 +3,7 @@ module github.com/DaigoSugiyama0317/map-memo-app
 go 1.23.4
 
 require (
+	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/golang-jwt/jwt/v5 v5.2.2
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.13.3

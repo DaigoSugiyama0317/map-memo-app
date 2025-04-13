@@ -23,14 +23,15 @@ func NewTagRepository(db *gorm.DB) ITagRepository {
 	return &tagRepository{db}
 }
 
+//user idを元にタグを全て取得, 作成日時で並べ替え
 func (tr tagRepository) GetAllTags(tags *[]model.Tag, userId uint) error {
-	//user idを元にタグを全て取得
 	if err := tr.db.Joins("User").Where("user_id=?", userId).Order("created_at").Find(tags).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
+//Tagの作成
 func (tr tagRepository) CreateTag(tag *model.Tag) error {
 	if err := tr.db.Create(tag).Error; err != nil {
 		return err
@@ -38,6 +39,7 @@ func (tr tagRepository) CreateTag(tag *model.Tag) error {
 	return nil
 }
 
+//Tagの更新
 func (tr tagRepository) UpdateTag(tag *model.Tag, userId uint, tagId uint) error {
 	result := tr.db.Clauses(clause.Returning{}).Where("id=? AND user_id=?", tagId, userId).Updates(model.Tag{Name: tag.Name, Color: tag.Color})
 	if result.Error != nil {
@@ -49,6 +51,7 @@ func (tr tagRepository) UpdateTag(tag *model.Tag, userId uint, tagId uint) error
 	return nil
 }
 
+//Tagの削除
 func (tr tagRepository) DeleteTag(userId uint, tagId uint) error {
 	result := tr.db.Where("id=? AND user_id=?", tagId, userId).Delete(&model.Tag{})
 	if result.Error != nil {
